@@ -14,7 +14,7 @@ export class PrismaUserMapper {
     updatedAt,
   }: Users): User {
     return {
-      id: id!,
+      id,
       createdAt,
       email,
       name,

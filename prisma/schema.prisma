@@ -19,7 +19,7 @@ enum Role {
 }
 
 model User {
-  id             Int       @id @default(autoincrement())
+  id             String       @id @default(uuid())
   name           String    @db.VarChar(120)
   email          String    @unique @db.VarChar(70)
   password       String    @db.VarChar(120)

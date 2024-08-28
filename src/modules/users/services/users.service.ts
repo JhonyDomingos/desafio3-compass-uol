@@ -1,10 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UsersRepository } from '../repositories/users.repository';
 import { Users } from '../entities/users.entity';
-import {
-  CreateUsersRequest,
-  type UserReturn,
-} from '../interface/users.interface';
+import { CreateUsersRequest } from '../interface/users.interface';
 import { hashSync } from 'bcrypt';
 
 @Injectable()
@@ -17,9 +14,8 @@ export class UsersService {
     password,
     acceptedPolicy,
     role,
-  }: CreateUsersRequest): Promise<UserReturn> {
+  }: CreateUsersRequest) {
     const user = new Users({
-      
       name,
       email,
       password: hashSync(password, 10),
@@ -32,9 +28,9 @@ export class UsersService {
 
   async findByEmail(email: string): Promise<Users | null> {
     return this.userRepo.findByEmail(email);
-  } 
+  }
 
-  async findById(id: number): Promise<Users | null> {
+  async findById(id: string): Promise<Users | null> {
     return this.userRepo.findById(id);
   }
 }

@@ -1,13 +1,10 @@
 import { Replace } from 'src/utils/replace.types';
-import {
-  UsersRoleEnum,
-  UsersSchema,
-  type UserReturn,
-} from '../interface/users.interface';
+import { UsersRoleEnum, UsersSchema } from '../interface/users.interface';
+import { randomUUID } from 'crypto';
 
 export class Users {
   private props: UsersSchema;
-  private _id: number;
+  private _id: string;
 
   constructor(
     props: Replace<
@@ -19,7 +16,7 @@ export class Users {
         role?: UsersRoleEnum;
       }
     >,
-    id?: number,
+    id?: string,
   ) {
     this.props = {
       ...props,
@@ -28,10 +25,10 @@ export class Users {
       acceptedPolicy: props.acceptedPolicy || false,
       role: props.role || UsersRoleEnum.CUSTOMER,
     };
-    this._id = id || 0;
+    this._id = id || randomUUID();
   }
 
-  get id(): number {
+  get id(): string {
     return this._id!;
   }
   get name(): string {
@@ -80,10 +77,5 @@ export class Users {
 
   get createdAt(): Date {
     return this.props.createdAt;
-  }
-
-  toUserReturnPayload(): UserReturn {
-    const { password, ...userWithoutPassword } = this.props;
-    return userWithoutPassword as UserReturn;
   }
 }

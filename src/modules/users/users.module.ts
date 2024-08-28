@@ -9,6 +9,7 @@ import { CheckUserMiddleware } from './middlewares/checkUser.middleware';
   imports: [PrismaModule],
   controllers: [UsersController],
   providers: [UsersService],
-  exports: [UsersService],
+  exports: [UsersService], 
 })
 export class UsersModule {}
+ 

@@ -1,5 +1,4 @@
 export interface UsersSchema {
-  id?: number;
   name: string;
   email: string;
   password: string;
@@ -18,4 +17,4 @@ export interface CreateUsersRequest
   extends Pick<UsersSchema, 'name' | 'email' | 'password' | 'acceptedPolicy'> {
   readonly role?: UsersRoleEnum;
 }
-export type UserReturn = Omit<UsersSchema, 'password'>;
+// export type UserReturn = Omit<UsersSchema, 'password'>;

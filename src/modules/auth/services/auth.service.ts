@@ -7,7 +7,7 @@ import { User } from '@prisma/client';
 export class AuthUserService {
   constructor(private readonly userRepo: UsersRepository) {}
 
-  async execute({ email, password }: ValidateAuthRequest): Promise<User> {
+  async execute({ email, password }: ValidateAuthRequest) {
     const user = await this.userRepo.findByEmail(email);
 
     if (!user) {
